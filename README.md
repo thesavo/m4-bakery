@@ -26,4 +26,8 @@ I'll be littering the source code with descriptive comments. For now explore the
 
 To try this yourself, clone this repo and run 'make'.
 
+# TODO
+
+My scripts have seen a lot of bit-rot over several years of archival and disuse; until this note disappears don't be surprised if several things simply don't work.
+
 (TODO: work in progress...)
