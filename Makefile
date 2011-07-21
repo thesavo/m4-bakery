@@ -15,6 +15,8 @@ DST      := dst
 targets  := $(shell find $(SRC) -type f)
 targets  := $(targets:$(SRC)/%=$(DST)/%)
 targets  := $(targets:.m4=)
+targets  := $(filter-out %.inc,$(targets))
+targets  := $(targets:.md=.html)
 targets  := $(targets:.md=.html)
 
 all: $(targets)
