@@ -2,7 +2,7 @@
 
 One of the first hacks that I was really proud of was this website-baking system I built in late 1999 with some venerable old Unix tools, [GNU Make](http://www.gnu.org/software/make/) and [GNU m4](http://www.gnu.org/software/m4/). The article [Using M4 to write HTML](http://web.archive.org/web/19980529230944/http://www.linuxgazette.com/issue22/using_m4.html) by Bob Hepple was my original inspiration, but I think I was able to surpass the utility of the examples given therein.
 
-**You're currently viewing the 'master' branch of this repository.** I've tried to include here many interesting features and ideas for how this technique might be used. I've tried to include a generous amount of internal documentation and comments as well, but it may yet be a lot to absorb at once. To more easily understand what's going on here, be sure to take a look at the 'simple' branch of the repository: http://github.com/datagrok/m4-bakery/tree/simple
+**You're currently viewing the 'simple' branch of this repository.** I've tried to present a minimal amount of code while demonstrating the main features and organization of this technique. Once you understand what's going on here, be sure to take a look at the master branch of the repository to see some additional features I've wired into this thing: http://github.com/datagrok/m4-bakery
 
 ## Site Baking
 
