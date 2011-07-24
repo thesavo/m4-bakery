@@ -1,6 +1,7 @@
 m4_divert(1)m4_dnl
 <!doctype html>
-m4_dnl  Prepare some default values
+m4_dnl  Prepare some default values. If we have not defined a __TITLE macro in
+m4_dnl  the content, the page title will be "Untitled Page."
 m4_ifdef(`__TITLE',, `m4_define(`__TITLE', `Untitled Page')')
 m4_ifdef(`__ROOT',, `m4_define(`__ROOT', `')')
 <!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en"> <![endif]-->
@@ -62,7 +63,7 @@ m4_dnl  The "no-js" class is for Modernizr.
 </head>
 
 <body>
-<div class="wrapper"><!-- not needed? up to you: http://camendesign.com/code/developpeurs_sans_frontieres -->
+<div class="wrapper">m4_dnl  not needed? up to you: http://camendesign.com/code/developpeurs_sans_frontieres
     <header>
         <h1><a href="/">__TITLE</a></h1>
         <nav>
@@ -75,16 +76,17 @@ m4_dnl  The "no-js" class is for Modernizr.
     </header>
     <article>
 m4_dnl
-m4_dnl  ------ Content will be placed here ------
+m4_divert(3)m4_dnl  --- Content will be placed here ---
 m4_dnl
-m4_divert(3)
     </article>
     <aside>
         <h2>Sidebar Content</h2>
     </aside>
     <footer>
-        <p><small>&copy; Copyright Your Name Here 2011. All Rights Reserved.</small></p>
+        <p>Created by <a href="http://datagrok.org">Michael F. Lamb</a></p>
     </footer>
+m4_dnl	The github ribbon, from https://github.com/blog/273-github-ribbons
+	<a href="http://github.com/datagrok/m4-bakery"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
 </div>
 
 m4_dnl  Grab Google CDN's jQuery. fall back to local if necessary
@@ -107,3 +109,4 @@ m4_ifdef(`__GACODE', `<script>
 
 </body>
 </html>
+m4_dnl vim: ft=m4 :

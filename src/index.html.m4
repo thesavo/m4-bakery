@@ -1,9 +1,4 @@
-m4_define(`TITLE', `M4 Macros for Website Baking')
+m4_dnl	Define a macro that will be expanded in the HTML template.
+TITLE(`M4 Macros for Website Baking')
 
-<h1>Article Header</h1>
-
-<p>Etiam pretium odio eu mi convallis vitae varius neque pharetra. Nulla vestibulum nisi ut sem cursus sed mattis nisi egestas.</p>
-
-<h2>Article Subhead</h2>
-
-<p>Vestibulum lacus erat, volutpat vel dignissim at, fringilla ut felis.</p>
+<p>This is a simple example of how one might use GNU Make and GNU M4 to build a static website.</p>

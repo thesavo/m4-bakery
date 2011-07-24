@@ -10,7 +10,7 @@ DST      := dst
 
 # Build a list of all the files that should exist when the
 # baking is done. We do this by getting a list of all the
-# source files and replacing pathnames and file suffixes as
+# source files and rewriting pathnames and file suffixes as
 # necessary.
 targets  := $(shell find $(SRC) -type f)
 targets  := $(targets:$(SRC)/%=$(DST)/%)
@@ -21,10 +21,11 @@ targets  := $(targets:.md=.html)
 all: $(targets)
 
 # Any files named '*.html.m4' will be interpreted by M4
-# with the macros available, wrapped and output to the
-# destination with the .m4 suffix removed.
+# with the macros available, wrapped in the HTML template,
+# and saved without the '.m4' extension. A later rule
+# copies this to the destination, and Make is smart enough
+# to delete the intermediate file.
 $(SRC)/%.html: $(SRC)/%.html.m4 $(MACROS) $(TEMPLATE)
-	# Baking $< into $@
 	m4 -P $(MACROS) $< $(TEMPLATE) > $@
 
 # How about markdown? This idea can be extended to support
@@ -37,24 +38,26 @@ $(SRC)/%.html.m4: $(SRC)/%.md.m4 $(MACROS) $(TEMPLATE)
 	# Rendering $< to $@ with pandoc
 	pandoc -f markdown -t html -o $@ $<
 
-# Any files named '*.m4' will be interpreted by M4 with the
-# macros available, and output to the destination with the
-# .m4 suffix removed.
+# Any other files named '*.m4' will be interpreted by M4
+# with the macros available, saved without the '.m4'
+# extension, but will not be wrapped in the HTML template.
 $(SRC)/%: $(SRC)/%.m4 $(MACROS)
-	# Baking $< into $@
 	m4 -P $(MACROS) $< > $@
 
-# Any files not matched by rules above will be copied
-# verbatim to the destination.
+# After the files have been compiled by m4, they will be
+# copied verbatim to the destination. I use the ubiquitous
+# unix 'install' tool here because it creates any needed
+# paths automatically.
 $(DST)/%: $(SRC)/%
-	# Copying $< to $@
 	install -m 644 -D $< $@
 
 # By default, GNU Make will skip any source files that have
 # not been modified since the last time they were rendered.
 # Run 'make clean' to erase the destination directory for a
-# complete rebuild.
+# complete rebuild. I do a 'mv' then 'rm' to reduce the
+# chances of running an 'rm -rf /'.
 clean:
-	# deleting $(DST)/
 	mv $(DST) .old_dst
 	rm -rf .old_dst
+
+# vim: tw=59 :
