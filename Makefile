@@ -12,7 +12,7 @@ DST      := dst
 # baking is done. We do this by getting a list of all the
 # source files and rewriting pathnames and file suffixes as
 # necessary.
-targets  := $(shell find $(SRC) -type f)
+targets  := $(shell find -L $(SRC) -type f)
 targets  := $(targets:$(SRC)/%=$(DST)/%)
 targets  := $(targets:.m4=)
 targets  := $(filter-out %.inc %.swp,$(targets))
