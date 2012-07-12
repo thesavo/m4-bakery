@@ -4,7 +4,7 @@ One of the first hacks that I was really proud of was this website-baking system
 
 **You're currently viewing the 'savo' branch of this repository.** This branch contains some customizations for the specific needs of a friend. For a general purpose look at this concept, be sure to take a look at the 'master' or 'simple' branches of the repository: http://github.com/datagrok/m4-bakery/tree/master
 
-**Dependencies:** sudo apt-get install libjs-twitter-bootstrap
+**Dependencies:** sudo apt-get install libjs-twitter-bootstrap pandoc make
 
 ## Site Baking
 
