@@ -19,6 +19,9 @@ m4_ifdef(`__ROOT',, `m4_define(`__ROOT', `.')')
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
+	  img#logo {
+	  	float: right;
+	  }
     </style>
     <link href="__ROOT/_/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -58,6 +61,7 @@ m4_ifdef(`__ROOT',, `m4_define(`__ROOT', `.')')
     </div>
 
     <div class="container">
+	<img id="logo" src="__ROOT/savo.png">
 	<h1>__TITLE</h1>
 
 m4_dnl
