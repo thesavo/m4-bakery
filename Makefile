@@ -20,21 +20,25 @@ targets  := $(targets:.md=.html)
 
 all: $(targets)
 
+# This says index.html should be recreated when either
+# index-part1.inc or index-part2.inc change.
+$(SRC)/index.html: $(SRC)/index-part1.inc $(SRC)/index-part2.inc
+
 # Any files named '*.html.m4' will be interpreted by M4
 # with the macros available, wrapped in the HTML template,
 # and saved without the '.m4' extension. A later rule
 # copies this to the destination, and Make is smart enough
 # to delete the intermediate file.
-$(SRC)/%.html: $(SRC)/%.html.m4 $(MACROS) $(TEMPLATE)
+$(SRC)/%.html: $(SRC)/%.htmlbody $(MACROS) $(TEMPLATE)
 	m4 -P $(MACROS) $< $(TEMPLATE) > $@
 
 # How about markdown? This idea can be extended to support
 # many different pre- and post-processing tools. I think
 # pandoc is the best markdown tool out there, so here's one
-# way to wire it in to run *before* m4. GNU Make is even
-# smart enough to clean up the intermediate file created by
-# this step.
-$(SRC)/%.html.m4: $(SRC)/%.md.m4 $(MACROS) $(TEMPLATE)
+# way to wire it in to run after m4. GNU Make is even smart
+# enough to clean up the intermediate file created by this
+# step.
+$(SRC)/%.htmlbody: $(SRC)/%.md $(MACROS) $(TEMPLATE)
 	# Rendering $< to $@ with pandoc
 	pandoc -f markdown -t html -o $@ $<
 
